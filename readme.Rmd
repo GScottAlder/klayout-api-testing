@@ -134,17 +134,20 @@ import math
 
 view = pya.LayoutView.current()
 
-# Coordinates are in um
+# Array for  points to take CD measurements at
+## Coordinates are in um
 pt_array = [
   [1.05, 1.0], # Horizontal CD = 0.1um
   [0.5, 2.1]   # Vertical CD = 0.2um
 ]
 
-cd_array = [] # Array for sotring output: x,y,CD,angle
+cd_array = [] # Array for storing output: x,y,CD,angle
 
 for pt in pt_array:
+  # Create measure ruler annotation at each point
   ant = view.create_measure_ruler(pya.DPoint.new(pt[0], pt[1]))
 
+  # Calculate CD and angle using ruler endpoints
   dx = ant.p1.x - ant.p2.x
   dy = ant.p1.y - ant.p2.y 
   cd = (dx**2.0 + dy**2.0)**0.5
@@ -154,6 +157,7 @@ for pt in pt_array:
   else:
     angle = abs(math.atan(dy/dx))
   
+  # Store the result
   cd_array.append([pt[0], pt[1], round(cd, 4), round(angle, 4)]) 
   
 print(cd_array) # Could write results to a file instead
@@ -176,7 +180,8 @@ import math
 
 view = pya.LayoutView.current()
 
-# Coordinates are in um
+# Array for  points to take CD measurements at
+## Coordinates are in um
 pt_array = [
   [1.05, 1.0], # Horizontal CD = 0.1um
   [0.5, 2.1]   # Vertical CD = 0.2um
@@ -185,8 +190,10 @@ pt_array = [
 cd_array = [] # Array for storing output: x,y,CD,angle
 
 for pt in pt_array:
+  # Create measure ruler annotation at each point
   ant = view.create_measure_ruler(pya.DPoint.new(pt[0], pt[1]))
 
+  # Calculate CD and angle using ruler endpoints
   dx = ant.p1.x - ant.p2.x
   dy = ant.p1.y - ant.p2.y 
   cd = (dx**2.0 + dy**2.0)**0.5
@@ -196,6 +203,7 @@ for pt in pt_array:
   else:
     angle = abs(math.atan(dy/dx))
   
+  # Store the result
   cd_array.append([pt[0], pt[1], round(cd, 4), round(angle, 4)]) 
   
 print(cd_array) # Could write results to a file instead"

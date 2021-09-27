@@ -50,11 +50,11 @@ top.shapes(l1).insert(pya.Box(0 + 1100, 0 + 2200, 1000 + 1100, 2000 + 2200))
 layout.write("test.oas")
 ```
 
-    ## <klayout.dbcore.Shape object at 0x000000002BAFB138>
-    ## <klayout.dbcore.Shape object at 0x000000002BAFB228>
-    ## <klayout.dbcore.Shape object at 0x000000002BAFB318>
-    ## <klayout.dbcore.Shape object at 0x000000002BAFB408>
-    ## <klayout.dbcore.Layout object at 0x00000000261F2ED0>
+    ## <klayout.dbcore.Shape object at 0x000000002AB3B138>
+    ## <klayout.dbcore.Shape object at 0x000000002AB3B228>
+    ## <klayout.dbcore.Shape object at 0x000000002AB3B318>
+    ## <klayout.dbcore.Shape object at 0x000000002AB3B408>
+    ## <klayout.dbcore.Layout object at 0x0000000026202ED0>
 
 Now convert the dummy layout data from \*.oas to \*.dxf.
 
@@ -66,8 +66,8 @@ layout.read("test.oas")
 layout.write("test.dxf")
 ```
 
-    ## <klayout.dbcore.LayerMap object at 0x000000002BAFB228>
-    ## <klayout.dbcore.Layout object at 0x000000002BAFB138>
+    ## <klayout.dbcore.LayerMap object at 0x000000002AB3B228>
+    ## <klayout.dbcore.Layout object at 0x000000002AB3B138>
 
 Load the `rgdal` package and define the path to our test.dxf file
 
@@ -168,17 +168,20 @@ import math
 
 view = pya.LayoutView.current()
 
-# Coordinates are in um
+# Array for  points to take CD measurements at
+## Coordinates are in um
 pt_array = [
   [1.05, 1.0], # Horizontal CD = 0.1um
   [0.5, 2.1]   # Vertical CD = 0.2um
 ]
 
-cd_array = [] # Array for sotring output: x,y,CD,angle
+cd_array = [] # Array for storing output: x,y,CD,angle
 
 for pt in pt_array:
+  # Create measure ruler annotation at each point
   ant = view.create_measure_ruler(pya.DPoint.new(pt[0], pt[1]))
 
+  # Calculate CD and angle using ruler endpoints
   dx = ant.p1.x - ant.p2.x
   dy = ant.p1.y - ant.p2.y 
   cd = (dx**2.0 + dy**2.0)**0.5
@@ -188,6 +191,7 @@ for pt in pt_array:
   else:
     angle = abs(math.atan(dy/dx))
   
+  # Store the result
   cd_array.append([pt[0], pt[1], round(cd, 4), round(angle, 4)]) 
   
 print(cd_array) # Could write results to a file instead
@@ -212,7 +216,8 @@ import math
 
 view = pya.LayoutView.current()
 
-# Coordinates are in um
+# Array for  points to take CD measurements at
+## Coordinates are in um
 pt_array = [
   [1.05, 1.0], # Horizontal CD = 0.1um
   [0.5, 2.1]   # Vertical CD = 0.2um
@@ -221,8 +226,10 @@ pt_array = [
 cd_array = [] # Array for storing output: x,y,CD,angle
 
 for pt in pt_array:
+  # Create measure ruler annotation at each point
   ant = view.create_measure_ruler(pya.DPoint.new(pt[0], pt[1]))
 
+  # Calculate CD and angle using ruler endpoints
   dx = ant.p1.x - ant.p2.x
   dy = ant.p1.y - ant.p2.y 
   cd = (dx**2.0 + dy**2.0)**0.5
@@ -232,6 +239,7 @@ for pt in pt_array:
   else:
     angle = abs(math.atan(dy/dx))
   
+  # Store the result
   cd_array.append([pt[0], pt[1], round(cd, 4), round(angle, 4)]) 
   
 print(cd_array) # Could write results to a file instead"
