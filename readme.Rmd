@@ -105,7 +105,7 @@ g <-
   layout_data %>% 
   ggplot(aes(x, y, group=group)) +
   geom_polygon(fill="black", color=NA) +
-  # Red pt's for bonus exercise below: taking auto CD measurements
+  # Red pt's for taking auto CD measurements (shown below)
   geom_point(
     aes(x, y), 
     data.frame(x=c(1.05, 0.5), y=c(1.0, 2.1)), 
@@ -118,7 +118,7 @@ g <-
 print(g)
 ```
 
-Bonus exercise: taking CD measurements of layout data at a list of coordinates
+We can also use the Klayout API to get CD measurements of layout data at a list of coordinates.
 
 You can measure the shortest CD at a point (x,y) in the layout by inserting a "measure ruler annotation" into the `LayoutView` object and then accessing the annotation's attributes.
 

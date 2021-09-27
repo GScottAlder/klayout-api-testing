@@ -50,11 +50,11 @@ top.shapes(l1).insert(pya.Box(0 + 1100, 0 + 2200, 1000 + 1100, 2000 + 2200))
 layout.write("test.oas")
 ```
 
-    ## <klayout.dbcore.Shape object at 0x000000002AB3B138>
-    ## <klayout.dbcore.Shape object at 0x000000002AB3B228>
-    ## <klayout.dbcore.Shape object at 0x000000002AB3B318>
-    ## <klayout.dbcore.Shape object at 0x000000002AB3B408>
-    ## <klayout.dbcore.Layout object at 0x0000000026202ED0>
+    ## <klayout.dbcore.Shape object at 0x000000002633B138>
+    ## <klayout.dbcore.Shape object at 0x000000002633B228>
+    ## <klayout.dbcore.Shape object at 0x000000002633B318>
+    ## <klayout.dbcore.Shape object at 0x000000002633B408>
+    ## <klayout.dbcore.Layout object at 0x0000000026212ED0>
 
 Now convert the dummy layout data from \*.oas to \*.dxf.
 
@@ -66,8 +66,8 @@ layout.read("test.oas")
 layout.write("test.dxf")
 ```
 
-    ## <klayout.dbcore.LayerMap object at 0x000000002AB3B228>
-    ## <klayout.dbcore.Layout object at 0x000000002AB3B138>
+    ## <klayout.dbcore.LayerMap object at 0x000000002633B228>
+    ## <klayout.dbcore.Layout object at 0x000000002633B138>
 
 Load the `rgdal` package and define the path to our test.dxf file
 
@@ -132,7 +132,7 @@ g <-
   layout_data %>% 
   ggplot(aes(x, y, group=group)) +
   geom_polygon(fill="black", color=NA) +
-  # Red pt's for bonus exercise below: taking auto CD measurements
+  # Red pt's for taking auto CD measurements (shown below)
   geom_point(
     aes(x, y), 
     data.frame(x=c(1.05, 0.5), y=c(1.0, 2.1)), 
@@ -147,8 +147,8 @@ print(g)
 
 ![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-Bonus exercise: taking CD measurements of layout data at a list of
-coordinates
+We can also use the Klayout API to get CD measurements of layout data at
+a list of coordinates.
 
 You can measure the shortest CD at a point (x,y) in the layout by
 inserting a “measure ruler annotation” into the `LayoutView` object and
