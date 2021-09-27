@@ -5,8 +5,8 @@ Scott Alder
 
 Klayout API has built in methods for writing layout data to multiple
 file formats. The main formats are, of course, \*.oas and \*.gds.
-However, there is also the \*.dxf format, a generic CAD file format
-developed by Autodesk (developer of the AutoCAD application). The
+However, Klayout also supports the \*.dxf format, a generic CAD file
+format developed by Autodesk (developer of the AutoCAD application). The
 advantage of the \*.dxf format is that it’s generic, meaning that there
 are open source libraries for working with \*.dxf files. In R, we can
 use the `rgdal` package to read the layout data from a \*.dxf file. The
@@ -50,11 +50,11 @@ top.shapes(l1).insert(pya.Box(0 + 1100, 0 + 2200, 1000 + 1100, 2000 + 2200))
 layout.write("test.oas")
 ```
 
-    ## <klayout.dbcore.Shape object at 0x000000002633B138>
-    ## <klayout.dbcore.Shape object at 0x000000002633B228>
-    ## <klayout.dbcore.Shape object at 0x000000002633B318>
-    ## <klayout.dbcore.Shape object at 0x000000002633B408>
-    ## <klayout.dbcore.Layout object at 0x0000000026212ED0>
+    ## <klayout.dbcore.Shape object at 0x000000002632B138>
+    ## <klayout.dbcore.Shape object at 0x000000002632B228>
+    ## <klayout.dbcore.Shape object at 0x000000002632B318>
+    ## <klayout.dbcore.Shape object at 0x000000002632B408>
+    ## <klayout.dbcore.Layout object at 0x0000000026202ED0>
 
 Now convert the dummy layout data from \*.oas to \*.dxf.
 
@@ -66,8 +66,8 @@ layout.read("test.oas")
 layout.write("test.dxf")
 ```
 
-    ## <klayout.dbcore.LayerMap object at 0x000000002633B228>
-    ## <klayout.dbcore.Layout object at 0x000000002633B138>
+    ## <klayout.dbcore.LayerMap object at 0x000000002632B228>
+    ## <klayout.dbcore.Layout object at 0x000000002632B138>
 
 Load the `rgdal` package and define the path to our test.dxf file
 
