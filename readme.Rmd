@@ -1,5 +1,5 @@
 ---
-title: "Klayout API Testing"
+title: "Reading Chip Design Layout Data in R/Python"
 author: "Scott Alder"
 date: "8/24/2021"
 output: rmarkdown::github_document
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(error = FALSE)
 knitr::opts_chunk$set(results = "hold")
 ```
 
-Klayout API has built in methods for writing layout data to multiple file formats. The main formats are, of course, \*.oas and \*.gds. However, Klayout also supports the \*.dxf format, a generic CAD file format developed by Autodesk (developer of the AutoCAD application). The advantage of the \*.dxf format is that it's generic, meaning that there are open source libraries for working with \*.dxf files. In R, we can use the `rgdal` package to read the layout data from a \*.dxf file. The disadvantage is that the file compression isn't nearly as good compared to \*.oas and \*.gds, so expect file size to increase significantly. 
+The Klayout API has built in methods for reading and writing layout data to multiple file formats. The main formats are, of course, \*.oas and \*.gds. However, Klayout also supports the \*.dxf format, a generic CAD file format developed by Autodesk (developer of the AutoCAD application). The advantage of the \*.dxf format is that it's generic, meaning that there are open source libraries for working with \*.dxf files. In R, we can use the `rgdal` package to read the layout data from a \*.dxf file. The disadvantage is that the file compression isn't nearly as good compared to \*.oas and \*.gds, so expect file size to increase significantly. 
 
 Here's a brief write-up in RMarkdown showing how to work with layout data from RStudio.
 

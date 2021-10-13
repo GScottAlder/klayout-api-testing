@@ -1,17 +1,18 @@
-Klayout API Testing
+Reading Chip Design Layout Data in R/Python
 ================
 Scott Alder
 8/24/2021
 
-Klayout API has built in methods for writing layout data to multiple
-file formats. The main formats are, of course, \*.oas and \*.gds.
-However, Klayout also supports the \*.dxf format, a generic CAD file
-format developed by Autodesk (developer of the AutoCAD application). The
-advantage of the \*.dxf format is that it’s generic, meaning that there
-are open source libraries for working with \*.dxf files. In R, we can
-use the `rgdal` package to read the layout data from a \*.dxf file. The
-disadvantage is that the file compression isn’t nearly as good compared
-to \*.oas and \*.gds, so expect file size to increase significantly.
+The Klayout API has built in methods for reading and writing layout data
+to multiple file formats. The main formats are, of course, \*.oas and
+\*.gds. However, Klayout also supports the \*.dxf format, a generic CAD
+file format developed by Autodesk (developer of the AutoCAD
+application). The advantage of the \*.dxf format is that it’s generic,
+meaning that there are open source libraries for working with \*.dxf
+files. In R, we can use the `rgdal` package to read the layout data from
+a \*.dxf file. The disadvantage is that the file compression isn’t
+nearly as good compared to \*.oas and \*.gds, so expect file size to
+increase significantly.
 
 Here’s a brief write-up in RMarkdown showing how to work with layout
 data from RStudio.
@@ -50,10 +51,10 @@ top.shapes(l1).insert(pya.Box(0 + 1100, 0 + 2200, 1000 + 1100, 2000 + 2200))
 layout.write("test.oas")
 ```
 
-    ## <klayout.dbcore.Shape object at 0x000000002632B138>
-    ## <klayout.dbcore.Shape object at 0x000000002632B228>
-    ## <klayout.dbcore.Shape object at 0x000000002632B318>
-    ## <klayout.dbcore.Shape object at 0x000000002632B408>
+    ## <klayout.dbcore.Shape object at 0x000000002AB3A138>
+    ## <klayout.dbcore.Shape object at 0x000000002AB3A228>
+    ## <klayout.dbcore.Shape object at 0x000000002AB3A318>
+    ## <klayout.dbcore.Shape object at 0x000000002AB3A408>
     ## <klayout.dbcore.Layout object at 0x0000000026202ED0>
 
 Now convert the dummy layout data from \*.oas to \*.dxf.
@@ -66,8 +67,8 @@ layout.read("test.oas")
 layout.write("test.dxf")
 ```
 
-    ## <klayout.dbcore.LayerMap object at 0x000000002632B228>
-    ## <klayout.dbcore.Layout object at 0x000000002632B138>
+    ## <klayout.dbcore.LayerMap object at 0x000000002AB3A228>
+    ## <klayout.dbcore.Layout object at 0x000000002AB3A138>
 
 Load the `rgdal` package and define the path to our test.dxf file
 
